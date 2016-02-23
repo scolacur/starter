@@ -1,0 +1,17 @@
+{% extends "starter/base.html" %}
+
+{% block content %}
+<h1 class="movie-title">{{movie.title}}</h1>
+<ul>
+	<li>ID: {{movie.id}}</li>
+	<li>Rotten Tomatoes ID: {{movie.rotten_tomatoes_id}}</li>
+	<li>Year: {{movie.year}}</li>
+	<li>MPAA Rating: {{movie.mpaa_rating}}</li>
+	<li>Runtime: {{movie.runtime}}</li>
+	<li>Theatre Release Date: {{movie.theatre_release_date}}</li>
+	<li>Synopsis: {{movie.synopsis}}</li>
+	<li>Critics Rating: {{movie.critics_rating}}</li>
+	<li>Critics Score: {{movie.critics_score}}</li>
+	<li>Audience Score: {{movie.audience_score}}</li>
+</ul>
+{% endblock%}
