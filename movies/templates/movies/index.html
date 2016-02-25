@@ -1,18 +1,31 @@
 {% extends "starter/base.html" %}
+{% load staticfiles %}
 
 {% block content %}
+	<link rel="stylesheet" type="text/css" href="{% static 'movies/main.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'movies/list.css' %}" />
 
-<h1>Browse Movies</h1>
-{% if movie_list %}
-    <ul>
-    {% for movie in movie_list %}
-        <li><a href="/movies/{{ movie.id }}/">{{ movie.title }}</a></li>
-				<li><img class="poster-icon" src="{{ movie.poster }}"></img></li>
+	<div class="movies-view">
 
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No movies are available.</p>
-{% endif %}
+		<h1 class="movies-view-title">Browse Movies</h1>
+		{% if movie_list %}
+			<div class="movies-list">
+						<ul class="flex-container">
+							{% for movie in movie_list %}
+							<a class="movie-block card" href="/movies/{{ movie.id }}/">
+								<li>
+										<img class="movie-poster" src="{{ movie.poster }}"></img>
+										<div class="movie-title"href="">{{ movie.title }}</div>
+								</li>
+							</a>
+							{% endfor %}
+						</ul>
+			</div>
+
+		{% else %}
+			<p>No movies are available.</p>
+		{% endif %}
+
+	</div>
 
 {% endblock %}

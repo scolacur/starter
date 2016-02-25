@@ -1,17 +1,57 @@
 {% extends "starter/base.html" %}
+{% load staticfiles %}
 
 {% block content %}
-<h1 class="movie-title">{{movie.title}}</h1>
-<ul>
-	<li>ID: {{movie.id}}</li>
-	<li>Rotten Tomatoes ID: {{movie.rotten_tomatoes_id}}</li>
-	<li>Year: {{movie.year}}</li>
-	<li>MPAA Rating: {{movie.mpaa_rating}}</li>
-	<li>Runtime: {{movie.runtime}}</li>
-	<li>Theatre Release Date: {{movie.theatre_release_date}}</li>
-	<li>Synopsis: {{movie.synopsis}}</li>
-	<li>Critics Rating: {{movie.critics_rating}}</li>
-	<li>Critics Score: {{movie.critics_score}}</li>
-	<li>Audience Score: {{movie.audience_score}}</li>
-</ul>
+	<link rel="stylesheet" type="text/css" href="{% static 'movies/main.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'movies/detail.css' %}" />
+
+<div class="movie-detail-view">
+
+	<div class='back-link'>
+		<a href="{% url 'index' %}">&lt&lt Back to All Movies</a>
+	</div>
+	<div class="movie-description card row">
+		<div class="col-md-4">
+
+			<h1 class="movie-title">{{movie.title}}</h1>
+
+			<ul>
+				<li>
+					<span class="bubble">{{movie.mpaa_rating}}</span>
+					<span class="bubble">{{movie.year}}</span>
+					{% if movie.runtime > -1 %}
+						<span class="bubble">Runtime: {{movie.runtime}} minutes</li>
+					{% endif %}
+
+				</li>
+				<li class="bubble">
+					<h4>Ratings</h4>
+
+					<p>Critics Rating: {{movie.critics_rating}}</p>
+					{% if movie.critics_score > -1 %}
+							<p>Critics Score: {{movie.critics_score}}</p>
+					{% endif %}
+					<p>Audience Score: {{movie.audience_score}}</p>
+				</li>
+				<li class="bubble">
+					<h4>More Info</h4>
+					<p>Release Date: {{movie.theatre_release_date}}</p>
+					<p>Rotten Tomatoes ID: {{movie.rotten_tomatoes_id}}</p>
+				</li>
+			</ul>
+		</div>
+		<div class="synopsis col-md-4">
+			<li>
+				<h2>Synopsis</h2>
+				<p>{{movie.synopsis}}</p>
+			</li>
+		</div>
+
+		<div class="image-container col-md-4">
+			<img class="movie-poster" src="{{ movie.poster }}"></img>
+		</div>
+	</div>
+
+
+</div>
 {% endblock%}

@@ -15,7 +15,8 @@ class Movie(models.Model):
 	#has foreign keys CastMember, Rating
 	critics_rating = models.CharField(max_length=255, default='N/A')
 	critics_score = models.IntegerField(default='-1')
-	extrathing = models.CharField(max_length=255, default='N/A')
+	# extrathing = models.CharField(max_length=255, default='N/A')
+	thumb = models.CharField(max_length=255, default='#')
 	poster = models.CharField(max_length=255, default='#')
 	audience_score = models.IntegerField(default='-1')
 
@@ -50,7 +51,9 @@ def import_from_json():
 			runtime				= movie['runtime'] 					or -1,
 			theatre_release_date= movie['release_dates']['theater'] or -1,
 			synopsis			= movie['synopsis'] 				or 'N/A',
-			poster				=movie['posters']['thumbnail']		or '#'
+			thumb				= movie['posters']['profile']		or '#',
+			poster				= movie['posters']['original']		or '#'
+
 		)
 
 		try:
