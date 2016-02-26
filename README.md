@@ -1,5 +1,7 @@
 #Notes
 
+Hi all,
+
 I tried to do several things, all rather imperfectly, just as an MVP sort of thing. Here are a few things I did:
 
 Updated the project to the newest version of Django
