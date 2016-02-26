@@ -8,8 +8,10 @@ Updated the project to the newest version of Django
 
 Added ‘movies’ as its own app, to make the application more modular. In general, I tried to keep the code as modular and reusable as possible.
 
-JSON Parsing
+Data
 The json is parsed and movie objects are added to the DB immediately after the models are created, so that it happens only once, rather than whenever a view is loaded. If I were hitting the actual API, I might want to update the DB more frequently, and maybe implement caching.
+
+Also, the posters for each movie in the new_movies.json all point to the same link, eg. they are all the same, low-quality definition. I figured I'd leave my model as it is, getting both the thumbnail and the poster, since the data could change in the future and it's good to have both sizes.
 
 YouTube Search API
 I connected the YouTube search API to get the trailers for each movie. You can see youtube.py for details. I gitignored the API key.
