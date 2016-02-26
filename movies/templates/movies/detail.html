@@ -12,6 +12,12 @@
 		<a href="{% url 'index' %}">&lt&lt Back to All Movies</a>
 	</div>
 
+	<div class="movie-container row">
+		{% video movie.video as trailer %}
+			{% video trailer "medium" %}
+		{% endvideo %}
+	</div>
+
 	<div class="movie-description card row">
 		<div class="col-md-4">
 
@@ -26,19 +32,23 @@
 					{% endif %}
 
 				</li>
-				<li class="bubble">
-					<h4>Ratings</h4>
+				<li class="info row">
 
-					<p>Critics Rating: {{movie.critics_rating}}</p>
-					{% if movie.critics_score > -1 %}
-							<p>Critics Score: {{movie.critics_score}}</p>
-					{% endif %}
-					<p>Audience Score: {{movie.audience_score}}</p>
-				</li>
-				<li class="bubble">
-					<h4>More Info</h4>
-					<p>Release Date: {{movie.theatre_release_date}}</p>
-					<p>Rotten Tomatoes ID: {{movie.rotten_tomatoes_id}}</p>
+					<div class="card col-md-4">
+						<h4>Ratings</h4>
+
+						<p>Critics Rating: {{movie.critics_rating}}</p>
+						{% if movie.critics_score > -1 %}
+						<p>Critics Score: {{movie.critics_score}}</p>
+						{% endif %}
+						<p>Audience Score: {{movie.audience_score}}</p>
+					</div>
+					<div class="card col-md-4">
+						<h4>More Info</h4>
+						<p>Release Date: {{movie.theatre_release_date}}</p>
+						<p>Rotten Tomatoes ID: {{movie.rotten_tomatoes_id}}</p>
+					</div>
+
 				</li>
 			</ul>
 		</div>
@@ -55,13 +65,5 @@
 
 	</div>
 
-	<div class="movie-container">
-		{% video movie.video as my_video %}
-			URL: {{ my_video.url }}
-			Backend: {{ my_video.backend }}
-			{% video my_video "medium" %}
-		{% endvideo %}
-		<!-- {% video my_video 'medium' %} -->
-	</div>
 </div>
 {% endblock%}

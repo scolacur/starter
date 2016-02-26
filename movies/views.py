@@ -37,10 +37,11 @@ def detail(request, movie_id):
 		movie.video = detect_backend(link)
 	else:
 		movie.video = detect_backend('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
-
+		# Defaults to this video if one is not found. If you have
+		# time, check it out! It's one of my favorites :)
 	context = {
 		'movie': movie,
-		'my_video': movie.video
+		'trailer': movie.video
 	}
 
 	return render(request, 'movies/detail.html', context);
