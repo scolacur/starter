@@ -33,6 +33,10 @@ class Character(models.Model):
 	cast_member = models.ForeignKey(CastMember, on_delete=models.CASCADE)
 
 
+
+
+
+
 # Import json
 def import_from_json():
 	json_data = open(settings.BASE_DIR + '/starter/data/movies.json')
@@ -42,7 +46,7 @@ def import_from_json():
 
 	# Save data from json to DB
 	for movie in movie_json['movies']:
-		#
+		
 		newMovie,created = Movie.objects.get_or_create(
 			rotten_tomatoes_id	= movie['id'] 						or -1,
 			title				= movie['title'] 					or 'N/A',
@@ -53,7 +57,6 @@ def import_from_json():
 			synopsis			= movie['synopsis'] 				or 'N/A',
 			thumb				= movie['posters']['profile']		or '#',
 			poster				= movie['posters']['original']		or '#'
-
 		)
 
 		try:
