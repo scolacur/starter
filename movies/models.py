@@ -35,29 +35,34 @@ class Character(models.Model):
 
 
 
-
+# TODO: Refactor, This should probably be in another file
 
 # Import json
 def import_from_json():
-	json_data = open(settings.BASE_DIR + '/starter/data/movies.json')
+	json_data = open(settings.BASE_DIR + '/starter/data/more_movies.json')
 	movie_json = json.load(json_data)
 
 	count = 1
 
 	# Save data from json to DB
 	for movie in movie_json['movies']:
-		
+
 		newMovie,created = Movie.objects.get_or_create(
 			rotten_tomatoes_id	= movie['id'] 						or -1,
 			title				= movie['title'] 					or 'N/A',
 			year				= movie['year'] 					or -1,
 			mpaa_rating			= movie['mpaa_rating'] 				or 'N/A',
 			runtime				= movie['runtime'] 					or -1,
-			theatre_release_date= movie['release_dates']['theater'] or -1,
+			# theatre_release_date= movie['release_dates']['theater'] or -1,
 			synopsis			= movie['synopsis'] 				or 'N/A',
 			thumb				= movie['posters']['profile']		or '#',
 			poster				= movie['posters']['original']		or '#'
 		)
+
+		try:
+			newMovie.theare_release_date = movie['release_dates']['theater']
+		except KeyError:
+			newMovie.theare_release_date = '-1'
 
 		try:
 			newMovie.critics_rating	= movie['ratings']['critics_rating']
